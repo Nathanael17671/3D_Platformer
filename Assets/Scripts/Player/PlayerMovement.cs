@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        Debug.Log(" jumps " + remainingJumps + " coyote " + coyoteTimer + " buffer " + jumpBuffer);
+        //Debug.Log(" jumps " + remainingJumps + " coyote " + coyoteTimer + " buffer " + jumpBuffer);
         
         if (isJumping == true)
         {
@@ -195,6 +195,8 @@ public class PlayerMovement : MonoBehaviour
         }
         //Turn moveDirection into velocity on the player
         moveDirection.y = verticalVelocity;
+
+        moveDirection = moveDirection * transform.localScale.y;
         playerCharController.Move(moveDirection * Time.deltaTime);
     }
 
