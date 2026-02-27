@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +10,10 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (show == true)
-            {
-                toDoList.SetActive(true);
-
-            } else
-            {
-                toDoList.SetActive(false);
-            }
+        ToDoList(false);
+        Cursor.lockState=CursorLockMode.Locked;
+        Cursor.visible=false;
+        
     }
 
     // Update is called once per frame
@@ -24,17 +21,30 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if (show == true)
-            {
-                show = false;
-                toDoList.SetActive(false);
+            ToDoList(true);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Restart();
+        }
+    }
 
-            } else
-            {
-                show = true;
-                toDoList.SetActive(true);
-            }
-            
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void ToDoList(bool tdl)
+    {
+        if (show == tdl)
+        {
+            show = false;
+            toDoList.SetActive(false);
+        } 
+        else
+        {
+            show = true;
+            toDoList.SetActive(true);
         }
     }
 }

@@ -22,7 +22,7 @@ public class GrabbableObject : MonoBehaviour
 
     public void Drop()
     {
-        Vector3 throwVelocity = (newPosition - previousPosition) / Time.deltaTime / 3f;
+        Vector3 throwVelocity = (newPosition - previousPosition) / Time.deltaTime / 1.5f;
         this.objectGrabPointTransform = null;
         objectRigidbody.useGravity = true;
         objectRigidbody.linearVelocity = throwVelocity;
