@@ -5,12 +5,16 @@ public class PlayerMovement : MonoBehaviour
 {
     //referance to camera to get rotation for the player 
     [SerializeField] private CameraMove cameraMove;
+    //to check if player is holding a object
+    private PlayerInteractController playerInteractController;
 
     //Player movement values
     //[Header("Movement values:")]
     [SerializeField] private float walkSpeed = 10f;
     [SerializeField] private float sprintSpeed = 20f;
+    [SerializeField] private float minCarrySpeedMultiplier = 0.01f;
     [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float minJumpMultiplier = 0.01f;
     //Desides how floaty the player is when airborn (Higher value means less floaty)
     [SerializeField] private float gravityStrenth = 6f;
 
@@ -49,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Grabs the Character Controller to manipulate it in the script
         playerCharController = GetComponent<CharacterController>();
+        playerInteractController = GetComponent<PlayerInteractController>();
     }
 
     void Update()
@@ -99,13 +104,36 @@ public class PlayerMovement : MonoBehaviour
             //Set forwards speed to Walking speed
             currentForwardSpeed = walkSpeed;
         }
+
+        // ===== NEW: weight slowdown =====
+        float speedMultiplier = 1f;
+
+        if (playerInteractController.IsHoldingObject)
+        {
+            float weightRatio = playerInteractController.HeldObject.WeightRatio(playerInteractController.playerStrength);
+            // heavier object → slower movement
+            speedMultiplier = Mathf.Lerp(1f, minCarrySpeedMultiplier, weightRatio);
+        }
+
+        currentForwardSpeed *= speedMultiplier;
+        float strafeSpeed = walkSpeed * speedMultiplier;
+
         moveDirection = 
             transform.forward * verticalInput * currentForwardSpeed + 
-            transform.right * horizontalInput * walkSpeed;
+            transform.right * horizontalInput * strafeSpeed;
     }
 
     void JumpUpdate()
     {
+        //weight affects jump height
+        float jumpMultiplier = 1f;
+
+        if (playerInteractController.IsHoldingObject)
+        {
+            float weightRatio = playerInteractController.HeldObject.WeightRatio(playerInteractController.playerStrength);
+            jumpMultiplier = Mathf.Lerp(1f, minJumpMultiplier, weightRatio);
+        }
+
         //decrease coyote time over time
         if (coyoteTimer > 0)
         {
@@ -144,7 +172,6 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
-        //Debug.Log(" jumps " + remainingJumps + " coyote " + coyoteTimer + " buffer " + jumpBuffer);
         
         if (isJumping == true)
         {
@@ -155,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
                     jumpLength += Time.deltaTime;
                     //Set jump velocity
                     verticalVelocity = Mathf.Sqrt(Mathf.Max(0, jumpHeight * -1.8f * gravityValue * gravityStrenth * (setJumpLength + 0.5f - jumpLength)));
+                    verticalVelocity = Mathf.Sqrt(Mathf.Max(0, jumpHeight * jumpMultiplier * -1.8f * gravityValue * gravityStrenth * (setJumpLength + 0.5f - jumpLength)));
 
                 } 
                 else
@@ -165,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
             } 
             else
             {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravityValue * gravityStrenth);
+                verticalVelocity = Mathf.Sqrt(jumpHeight * jumpMultiplier * -2f * gravityValue * gravityStrenth);
                 isJumping = false;
             }
         }
