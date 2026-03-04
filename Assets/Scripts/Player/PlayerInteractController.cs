@@ -19,12 +19,18 @@ public class PlayerInteractController : MonoBehaviour
     [SerializeField] private GameObject grabCursor;
     [SerializeField] private GameObject heavyCursor;
 
+    private Collider playerCollider;
     private GrabbableObject heldObject;
     private GrabbableObject hoveredObject;
-    private Collider heldCollider;
+    private Collider[] heldCollider;
 
     public bool IsHoldingObject => heldObject != null;
     public GrabbableObject HeldObject => heldObject;
+
+    void Awake()
+    {
+        playerCollider = GetComponent<Collider>();
+    }
 
     void Update()
     {
@@ -35,7 +41,7 @@ public class PlayerInteractController : MonoBehaviour
 
     void DetectHover()
     {
-        hoveredObject = null;
+        GrabbableObject newHover = null;
 
         if (Physics.Raycast(
             playerCameraTransform.position,
@@ -44,7 +50,19 @@ public class PlayerInteractController : MonoBehaviour
             pickupDistance,
             pickupLayerMask))
         {
-            hit.transform.TryGetComponent(out hoveredObject);
+            hit.transform.TryGetComponent(out newHover);
+        }
+
+        // only change if different object
+        if (hoveredObject != newHover)
+        {
+            if (hoveredObject != null && hoveredObject != heldObject)
+                hoveredObject.SetHover(false, playerCameraTransform);
+
+            hoveredObject = newHover;
+
+            if (hoveredObject != null)
+                hoveredObject.SetHover(true, playerCameraTransform);
         }
 
         UpdateCursor();
@@ -85,12 +103,17 @@ public class PlayerInteractController : MonoBehaviour
                 {
                     heldObject = hoveredObject;
                     heldObject.Grab(objectGrabPointTransform, playerStrength);
+                    heldObject.SetHover(true, playerCameraTransform);
 
                     //remember collider and ignore collision
-                    heldCollider = heldObject.GetComponent<Collider>();
+                    heldCollider = heldObject.GetComponentsInChildren<Collider>();
 
                     Collider playerCol = GetComponent<CharacterController>();
-                    Physics.IgnoreCollision(playerCol, heldCollider, true);
+                    foreach (var col in heldCollider)
+                    {
+                        Physics.IgnoreCollision(playerCol, col, true);
+                    }
+                    
                 }
             }
         }
@@ -98,17 +121,30 @@ public class PlayerInteractController : MonoBehaviour
         if (Input.GetMouseButtonUp(1) && heldObject != null)
         {
             heldObject.Drop();
+            heldObject.SetHover(false, playerCameraTransform);
 
+            Collider playerCol = GetComponent<CharacterController>();
             //restore collision
             if (heldCollider != null)
             {
-                Collider playerCol = GetComponent<CharacterController>();
-                Physics.IgnoreCollision(playerCol, heldCollider, false);
+                foreach (var col in heldCollider)
+                {
+                    Physics.IgnoreCollision(playerCol, col, true);
+                }
             }
 
             heldObject = null;
             heldCollider = null;
         }
+        if (heldObject != null)
+        {
+            heldObject.objectPlayerStrength = playerStrength;
+        }
+    }
+
+    public GrabbableObject GetHeldObject()
+    {
+        return heldObject;
     }
 
     // camera slows when heavy object held

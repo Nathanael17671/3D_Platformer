@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShrinkPlayer : MonoBehaviour
 {
-    [SerializeField] private float shrinkSpeed = 1f;
+    [SerializeField] private float shrinkSpeed = 5f;
     [SerializeField] private float startScale = 200f;
     [SerializeField] private float minScale = 20f;
     [SerializeField] private bool active = true;
@@ -35,19 +35,19 @@ public class ShrinkPlayer : MonoBehaviour
         {
            if(currentScale > minScale)
             {
-                currentScale -=  currentScale * 0.01f * shrinkSpeed * Time.deltaTime;
+                currentScale -=  currentScale * 0.001f * shrinkSpeed * Time.deltaTime;
                 Debug.Log(currentScale);
                 setScale = new Vector3(currentScale,currentScale,currentScale) / 200f;
                 transform.localScale = setScale;
 
-                currentPickupDistance -=  currentPickupDistance * 0.0075f * shrinkSpeed * Time.deltaTime;
+                currentPickupDistance -=  currentPickupDistance * 0.00075f * shrinkSpeed * Time.deltaTime;
                 playerInteractController.pickupDistance = currentPickupDistance;
 
-                currentGrabStrengh -=  currentGrabStrengh * 0.025f * shrinkSpeed * Time.deltaTime;
+                currentGrabStrengh -=  currentGrabStrengh * 0.0025f * shrinkSpeed * Time.deltaTime;
                 playerInteractController.playerStrength = currentGrabStrengh;
                 Debug.Log(currentGrabStrengh);
 
-                currentGrabPoint +=  currentGrabPoint * 0.005f * shrinkSpeed * Time.deltaTime;
+                currentGrabPoint +=  currentGrabPoint * 0.0005f * shrinkSpeed * Time.deltaTime;
                 objectGrabPoint.transform.localPosition = new Vector3(objectGrabPoint.transform.localPosition.x, objectGrabPoint.transform.localPosition.y, currentGrabPoint);
            }
             else
