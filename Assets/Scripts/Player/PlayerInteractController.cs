@@ -129,7 +129,7 @@ public class PlayerInteractController : MonoBehaviour
             {
                 foreach (var col in heldCollider)
                 {
-                    Physics.IgnoreCollision(playerCol, col, true);
+                    Physics.IgnoreCollision(playerCol, col, false);
                 }
             }
 

@@ -37,12 +37,6 @@ public class ProximityScript : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        
-    }
-
-
     public void SetHover(bool state, Transform cameraTransform)
     {
 
