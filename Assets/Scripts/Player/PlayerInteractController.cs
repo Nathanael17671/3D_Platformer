@@ -70,6 +70,10 @@ public class PlayerInteractController : MonoBehaviour
 
     void UpdateCursor()
     {
+        if(normalCursor == null) return;
+        if(heavyCursor == null) return;
+        if(grabCursor == null) return;
+
         if (hoveredObject == null)
         {
             normalCursor.SetActive(true);

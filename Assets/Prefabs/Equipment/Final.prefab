@@ -125,7 +125,7 @@ MonoBehaviour:
   proximityDisplay: {fileID: 2289952072766992649}
   hoverTextRoot: {fileID: 1285627093185370044}
   hoverText: {fileID: 2799140984665613621}
-  objectName: Key x 3
+  objectName: I take 3 Keys to win
 --- !u!1 &1285627093185370044
 GameObject:
   m_ObjectHideFlags: 0

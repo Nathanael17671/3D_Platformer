@@ -980,7 +980,7 @@ MonoBehaviour:
   proximityDisplay: {fileID: 3705830261408712566}
   hoverTextRoot: {fileID: 4036362009234750353}
   hoverText: {fileID: 4892948583864203150}
-  objectName: ??? -> ???
+  objectName: I take one ingridient
 --- !u!1 &8892425168103540425
 GameObject:
   m_ObjectHideFlags: 0

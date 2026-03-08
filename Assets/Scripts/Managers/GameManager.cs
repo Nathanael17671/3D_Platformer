@@ -24,15 +24,16 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ToDoList(false);
-        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ToDoList();
+        }
         if (Input.GetKeyDown(KeyCode.R))
         {
             Restart();
@@ -96,12 +97,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void ToDoList(bool tdl)
+    void ToDoList()
     {
-        if (showTDL == tdl)
+        if (showTDL == true)
         {
             showTDL = false;
             toDoList.SetActive(false);
+            return;
         } 
         else
         {

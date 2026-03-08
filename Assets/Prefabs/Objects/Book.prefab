@@ -429,5 +429,5 @@ MonoBehaviour:
   dragWhenTooHeavy: 8
   hoverTextRoot: {fileID: 3358960872422380916}
   hoverText: {fileID: 8368766301578433110}
-  objectName: '*'
+  objectName: 
   objectPlayerStrength: 0

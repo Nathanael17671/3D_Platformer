@@ -901,7 +901,7 @@ MonoBehaviour:
   proximityDisplay: {fileID: 8337806501429641248}
   hoverTextRoot: {fileID: 4469460610843953774}
   hoverText: {fileID: 9134063347971152772}
-  objectName: ??? + #### -> ???
+  objectName: I take 1 Ingridient and 1 four digit number
 --- !u!1 &4469460610843953774
 GameObject:
   m_ObjectHideFlags: 0

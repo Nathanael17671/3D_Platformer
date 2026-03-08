@@ -36,7 +36,7 @@ public class ShrinkPlayer : MonoBehaviour
            if(currentScale > minScale)
             {
                 currentScale -=  currentScale * 0.001f * shrinkSpeed * Time.deltaTime;
-                Debug.Log(currentScale);
+                //Debug.Log(currentScale);
                 setScale = new Vector3(currentScale,currentScale,currentScale) / 200f;
                 transform.localScale = setScale;
 
@@ -45,7 +45,7 @@ public class ShrinkPlayer : MonoBehaviour
 
                 currentGrabStrengh -=  currentGrabStrengh * 0.0025f * shrinkSpeed * Time.deltaTime;
                 playerInteractController.playerStrength = currentGrabStrengh;
-                Debug.Log(currentGrabStrengh);
+                //Debug.Log(currentGrabStrengh);
 
                 currentGrabPoint +=  currentGrabPoint * 0.0005f * shrinkSpeed * Time.deltaTime;
                 objectGrabPoint.transform.localPosition = new Vector3(objectGrabPoint.transform.localPosition.x, objectGrabPoint.transform.localPosition.y, currentGrabPoint);

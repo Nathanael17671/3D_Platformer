@@ -1019,7 +1019,7 @@ MonoBehaviour:
   proximityDisplay: {fileID: 199325540510284648}
   hoverTextRoot: {fileID: 3523241949042792115}
   hoverText: {fileID: 1223800866221038628}
-  objectName: Wet
+  objectName: I generate Water
 --- !u!1 &8272234055019519697
 GameObject:
   m_ObjectHideFlags: 0

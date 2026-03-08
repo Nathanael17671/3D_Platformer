@@ -10,13 +10,20 @@ public class CameraMove : MonoBehaviour
 
     //currentX is public since we use it to orient the player
     private float weightMultiplier = 1f;
-    [HideInInspector] public float currentX;
+    public float currentX;
     private float currentY;
 
+    [Header("Player")]
+    [SerializeField] private Transform playerTransform;
     //Set the Minimum and Maximim y position to limit the camera from going to far up or down
     private const float YMin = -90.0f;
     private const float YMax = 90.0f;
-    
+
+    void Start()
+    {
+        Debug.Log("Start: " + currentX);
+        playerTransform.transform.localRotation = Quaternion.Euler(0, currentX, 0);
+    }
     // LateUpdate is called once per frame after Update is run
     void LateUpdate()
     {
@@ -27,8 +34,7 @@ public class CameraMove : MonoBehaviour
         //Limit y camera movement
         currentY = Mathf.Clamp(currentY, YMin, YMax);
         //Set the rotation of the camera to the current values
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        transform.rotation = rotation;
+        transform.rotation = Quaternion.Euler(currentY, currentX, 0);
     }
 
     public void SetWeightMultiplier(float value)
