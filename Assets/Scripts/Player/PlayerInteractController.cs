@@ -6,18 +6,21 @@ public class PlayerInteractController : MonoBehaviour
     [SerializeField] private Transform playerCameraTransform;
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickupLayerMask;
+    [SerializeField] private LayerMask interactLayers;
     [SerializeField] private CameraMove cameraMove;
 
     [Header("Strength")]
     public float playerStrength = 10f;
 
     [Header("Pickup")]
-    [SerializeField] public float pickupDistance = 5f;
+    [SerializeField] public float pickupDistance = 6f;
 
     [Header("Cursor")]
     [SerializeField] private GameObject normalCursor;
     [SerializeField] private GameObject grabCursor;
     [SerializeField] private GameObject heavyCursor;
+    [SerializeField] private GameObject heavyText;
+    private float heavyTextTimer;
 
     private Collider playerCollider;
     private GrabbableObject heldObject;
@@ -74,27 +77,56 @@ public class PlayerInteractController : MonoBehaviour
         if(heavyCursor == null) return;
         if(grabCursor == null) return;
 
-        if (hoveredObject == null)
-        {
-            normalCursor.SetActive(true);
-            heavyCursor.SetActive(false);
-            grabCursor.SetActive(false);
-            return;
-        }
+        Ray ray = new Ray(playerCameraTransform.transform.position, playerCameraTransform.transform.forward);
 
-        if (hoveredObject.TooHeavyToLift(playerStrength))
+        if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance, pickupLayerMask))
         {
-            normalCursor.SetActive(false);
-            heavyCursor.SetActive(true);
-            grabCursor.SetActive(false);
+            if ((interactLayers.value & (1 << hit.transform.gameObject.layer)) != 0)
+            {
+                if (hoveredObject != null)
+                {
+                    if (hoveredObject.TooHeavyToLift(playerStrength))
+                    {
+                        HeavyCursor();
+                    }
+                    else
+                    {
+                        GrabCursor();
+                    } 
+                }
+                else
+                {
+                    GrabCursor();
+                }
+            }
+            else
+            {
+                NormalCursor();
+            }
         }
         else
         {
-            normalCursor.SetActive(false);
-            heavyCursor.SetActive(false);
-            grabCursor.SetActive(true);
+            NormalCursor();
         }
-            
+    }
+
+    void NormalCursor()
+    {
+        normalCursor.SetActive(true);
+        heavyCursor.SetActive(false);
+        grabCursor.SetActive(false);
+    }
+    void HeavyCursor()
+    {
+        normalCursor.SetActive(false);
+        heavyCursor.SetActive(true);
+        grabCursor.SetActive(false);
+    }
+    void GrabCursor()
+    {
+        normalCursor.SetActive(false);
+        heavyCursor.SetActive(false);
+        grabCursor.SetActive(true);
     }
 
     void HandlePickup()
@@ -118,6 +150,10 @@ public class PlayerInteractController : MonoBehaviour
                         Physics.IgnoreCollision(playerCol, col, true);
                     }
                     
+                }
+                else
+                {
+                    heavyTextTimer = 2;
                 }
             }
         }
@@ -154,6 +190,14 @@ public class PlayerInteractController : MonoBehaviour
     // camera slows when heavy object held
     void UpdateCameraWeight()
     {
+        if (heavyTextTimer > 0)
+        {
+            heavyTextTimer -= Time.deltaTime;
+            heavyText.SetActive(true);
+        }
+        else 
+            heavyText.SetActive(false);
+        
         if (heldObject == null)
         {
             cameraMove.SetWeightMultiplier(1f);

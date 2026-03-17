@@ -331,7 +331,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7888815180353319465}
   - {fileID: 8434685758327248291}
   m_Father: {fileID: 4309151997256110358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -639,6 +638,7 @@ Transform:
   - {fileID: 205657665815569688}
   - {fileID: 4786212771240676139}
   - {fileID: 8947969914750151623}
+  - {fileID: 7888815180353319465}
   - {fileID: 7842477968037950369}
   - {fileID: 6061026618303995666}
   m_Father: {fileID: 0}
@@ -659,6 +659,7 @@ MonoBehaviour:
   potionDatabase: {fileID: 0}
   playerController: {fileID: 0}
   playerCamera: {fileID: 0}
+  gameManager: {fileID: 0}
   numberPadCanvas: {fileID: 0}
   interactTarget: {fileID: 974370278656871555}
   spawnPoint: {fileID: 4786212771240676139}
@@ -993,7 +994,7 @@ GameObject:
   - component: {fileID: 1852292078545165413}
   - component: {fileID: 4689920328247022469}
   - component: {fileID: 741676226873038017}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,8 +1010,8 @@ Transform:
   m_GameObject: {fileID: 8892425168103540425}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.171, y: 0.207, z: -0.033}
-  m_LocalScale: {x: 1.387875, y: 1.5198749, z: 1.25}
+  m_LocalPosition: {x: -0.079, y: 0.207, z: -0.033}
+  m_LocalScale: {x: 1.1967916, y: 1.5198749, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4309151997256110358}
@@ -1119,7 +1120,7 @@ RectTransform:
   m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.22000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7842477968037950369}
+  m_Father: {fileID: 4309151997256110358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1191,7 +1192,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Microwave?
+  m_text: Microwave
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -131,7 +131,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3143065267804524175}
   - {fileID: 2332770124408326693}
   m_Father: {fileID: 5357487339955557147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -314,7 +313,7 @@ GameObject:
   - component: {fileID: 7306638068009631525}
   - component: {fileID: 8831107500776651171}
   - component: {fileID: 4864077922230535195}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,8 +329,8 @@ Transform:
   m_GameObject: {fileID: 2893099970109422028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.019, y: -0.02, z: -0.033}
-  m_LocalScale: {x: 1.8646239, y: 2.152504, z: 1.00535}
+  m_LocalPosition: {x: 0.019, y: -0.02, z: -0.011}
+  m_LocalScale: {x: 1.8646239, y: 2.152504, z: 0.9537454}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5357487339955557147}
@@ -440,7 +439,7 @@ RectTransform:
   m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.22000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 3177191733072586188}
+  m_Father: {fileID: 5357487339955557147}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -512,7 +511,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mixinger
+  m_text: Mixer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -730,6 +729,7 @@ Transform:
   - {fileID: 2388684717774803246}
   - {fileID: 4865481858856661915}
   - {fileID: 1553493063561783924}
+  - {fileID: 3143065267804524175}
   - {fileID: 3177191733072586188}
   - {fileID: 3280325541138210921}
   m_Father: {fileID: 0}
@@ -750,6 +750,7 @@ MonoBehaviour:
   potionDatabase: {fileID: 0}
   playerController: {fileID: 0}
   playerCamera: {fileID: 0}
+  gameManager: {fileID: 0}
   numberPadCanvas: {fileID: 0}
   interactTarget: {fileID: 929018773489458927}
   spawnPoint: {fileID: 4865481858856661915}

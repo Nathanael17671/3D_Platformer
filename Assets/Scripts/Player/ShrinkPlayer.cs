@@ -6,7 +6,7 @@ public class ShrinkPlayer : MonoBehaviour
     [SerializeField] private float shrinkSpeed = 5f;
     [SerializeField] private float startScale = 200f;
     [SerializeField] private float minScale = 20f;
-    [SerializeField] private bool active = true;
+    [SerializeField] public bool active = true;
     private PlayerInteractController playerInteractController;
     [SerializeField] private GameObject objectGrabPoint;
     private float currentPickupDistance;

@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 1575565665323048157}
   - component: {fileID: 139042076455279535}
   - component: {fileID: 6815061957740322437}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1389936422088247067}
   - {fileID: 4275290691152874562}
   m_Father: {fileID: 5565049510736656772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202,7 +201,7 @@ RectTransform:
   m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.22000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 3762772837314555842}
+  m_Father: {fileID: 5565049510736656772}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -383,6 +382,7 @@ Transform:
   - {fileID: 4163057363691393238}
   - {fileID: 3573938383330181127}
   - {fileID: 6382316758174445547}
+  - {fileID: 1389936422088247067}
   - {fileID: 3762772837314555842}
   - {fileID: 2534804378141613001}
   m_Father: {fileID: 0}
@@ -403,6 +403,7 @@ MonoBehaviour:
   potionDatabase: {fileID: 0}
   playerController: {fileID: 0}
   playerCamera: {fileID: 0}
+  gameManager: {fileID: 0}
   numberPadCanvas: {fileID: 0}
   interactTarget: {fileID: 1701776976046637379}
   spawnPoint: {fileID: 3573938383330181127}

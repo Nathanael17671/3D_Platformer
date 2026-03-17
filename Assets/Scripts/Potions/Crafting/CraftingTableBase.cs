@@ -10,6 +10,7 @@ public abstract class CraftingTableBase : MonoBehaviour
 
     public PlayerInteractController playerController;
     public Camera playerCamera;
+    public GameManager gameManager;
 
     public Transform interactTarget;
     public Transform spawnPoint;
@@ -44,14 +45,18 @@ public abstract class CraftingTableBase : MonoBehaviour
 
     public float GetProgress()
     {
+        
         if (!crafting) return 0;
         return craftTimer / craftDuration;
     }
 
     protected void StartCrafting()
     {
-        if (!crafting)
-            StartCoroutine(CraftingRoutine());
+        if (gameManager.isPaused == false)
+        {
+            if (!crafting)
+                StartCoroutine(CraftingRoutine());
+        }
     }
 
     IEnumerator CraftingRoutine()
@@ -59,11 +64,16 @@ public abstract class CraftingTableBase : MonoBehaviour
         crafting = true;
         craftTimer = 0;
 
-        while (craftTimer < craftDuration)
+        if (gameManager.isPaused == false)
         {
-            craftTimer += Time.deltaTime;
-            yield return null;
+            while (craftTimer < craftDuration)
+            {
+
+                craftTimer += Time.deltaTime;
+                yield return null;
+            }
         }
+        
 
         FinishCraft();
 
@@ -90,9 +100,10 @@ public abstract class CraftingTableBase : MonoBehaviour
                 Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         }
     }
-
+    
     protected bool IsLookingAtTarget(float distance = 5f)
     {
+        
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         RaycastHit[] hits = Physics.RaycastAll(ray, distance);
 

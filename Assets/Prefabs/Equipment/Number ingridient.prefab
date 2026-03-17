@@ -36,6 +36,7 @@ Transform:
   - {fileID: 465989938831960284}
   - {fileID: 417959270128383359}
   - {fileID: 2240005645961111892}
+  - {fileID: 9120003264904106142}
   - {fileID: 8886510162122830737}
   - {fileID: 8822427899322076124}
   m_Father: {fileID: 0}
@@ -56,6 +57,7 @@ MonoBehaviour:
   potionDatabase: {fileID: 0}
   playerController: {fileID: 0}
   playerCamera: {fileID: 0}
+  gameManager: {fileID: 0}
   numberPadCanvas: {fileID: 0}
   interactTarget: {fileID: 979740501515782233}
   spawnPoint: {fileID: 417959270128383359}
@@ -81,7 +83,7 @@ GameObject:
   - component: {fileID: 6178840623486034164}
   - component: {fileID: 3320830846425942036}
   - component: {fileID: 6359523619442847285}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +99,8 @@ Transform:
   m_GameObject: {fileID: 2507497155148946287}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.198, y: -0.107, z: -0.033}
-  m_LocalScale: {x: 1.387875, y: 1.5198749, z: 1.25}
+  m_LocalPosition: {x: 0.198, y: -0.069, z: -0.096}
+  m_LocalScale: {x: 1.2373321, y: 1.2508874, z: 1.1822749}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 992739746844747683}
@@ -662,7 +664,7 @@ GameObject:
   - component: {fileID: 2778537728702812580}
   - component: {fileID: 3690958393468490148}
   - component: {fileID: 3456015183740913684}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Number Pad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,8 +761,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.64823437, y: 0.8787277, z: 0.5287264}
+  m_Center: {x: 0.0019173622, y: -0.060636178, z: 0.027444273}
 --- !u!114 &3456015183740913684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -774,8 +776,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCode: 0
+  interactDistance: 3
+  interactionLayers:
+    serializedVersion: 2
+    m_Bits: 599
   numberPad: {fileID: 0}
   craftingTable: {fileID: 261696751147892391}
+  playerCamera: {fileID: 0}
 --- !u!1 &4328695659103636550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,11 +1041,11 @@ RectTransform:
   m_LocalScale: {x: 0.22000001, y: 0.22000001, z: 0.22000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8886510162122830737}
+  m_Father: {fileID: 992739746844747683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 1.78}
+  m_AnchoredPosition: {x: 0, y: 1.9}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5813887781252473209
@@ -1106,7 +1113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Numberer
+  m_text: Number Mixer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1861,7 +1868,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9120003264904106142}
   - {fileID: 3309892964040184754}
   m_Father: {fileID: 992739746844747683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

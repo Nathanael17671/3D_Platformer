@@ -10,6 +10,8 @@ public class CraftingTable : MonoBehaviour
 
     public PlayerInteractController playerController;
     public Camera playerCamera;
+    
+    public GameManager gameManager;
     public GameObject numberPadCanvas;
 
     public Transform interactTarget;
@@ -63,7 +65,7 @@ public class CraftingTable : MonoBehaviour
         if (crafting)
             return;
 
-        if (Input.GetMouseButtonDown(0) && IsLookingAtTarget())
+        if (Input.GetMouseButtonDown(0) && IsLookingAtTarget() && gameManager.isPaused == false)
         {
             if (CanStartCraft())
             {
@@ -98,7 +100,10 @@ public class CraftingTable : MonoBehaviour
 
         while (craftTimer < craftDuration)
         {
-            craftTimer += Time.deltaTime;
+            if (gameManager.isPaused == false)
+            {
+                craftTimer += Time.deltaTime;
+            }
             yield return null;
         }
 
@@ -332,7 +337,7 @@ public class CraftingTable : MonoBehaviour
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-        RaycastHit[] hits = Physics.RaycastAll(ray, 5f);
+        RaycastHit[] hits = Physics.RaycastAll(ray, playerController.pickupDistance);
 
         foreach (RaycastHit hit in hits)
         {

@@ -4,39 +4,43 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] private GameObject toDoList;
-    [SerializeField] private bool showTDL = false;
+    [SerializeField] private GameObject pauseMenu;
+    public bool isPaused = false;
 
     [Header("Referances")]
     [SerializeField] private MonoBehaviour[] scriptsToDisable;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private ShrinkPlayer shrinkPlayer;
 
     [Header("Victory")]
-    public bool victoryTriggered = false;
+    [HideInInspector] public bool victoryTriggered = false;
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private AudioClip victorySound;
 
     [Header("Defeat")]
-    public bool defeatTriggered = false;
+    [HideInInspector] public bool defeatTriggered = false;
     [SerializeField] private GameObject defeatScreen;
     [SerializeField] private AudioClip defeatSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        UnPause();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ToDoList();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Restart();
+            if (isPaused == true)
+            {
+                UnPause();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 
@@ -79,6 +83,7 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState=CursorLockMode.None;
         Cursor.visible=true;
+        shrinkPlayer.active = false;
     }
 
     public void EnableControlls()
@@ -88,6 +93,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState=CursorLockMode.Locked;
         Cursor.visible=false;
+        shrinkPlayer.active = true;
+
         defeatScreen.SetActive(false);
         victoryScreen.SetActive(false);
     }
@@ -97,18 +104,17 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void ToDoList()
+    public void UnPause()
     {
-        if (showTDL == true)
-        {
-            showTDL = false;
-            toDoList.SetActive(false);
-            return;
-        } 
-        else
-        {
-            showTDL = true;
-            toDoList.SetActive(true);
-        }
+        pauseMenu.SetActive(false);
+        EnableControlls();
+        isPaused = false;
+    } 
+
+    public void Pause()
+    {
+        pauseMenu.SetActive(true);
+        DisableControlls();
+        isPaused = true;
     }
 }
