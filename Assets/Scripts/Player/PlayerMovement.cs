@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CameraMove cameraMove;
     //to check if player is holding a object
     private PlayerInteractController playerInteractController;
+    private ShrinkPlayer shrinkPlayer;
 
     //Player movement values
     //[Header("Movement values:")]
@@ -46,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
     //extra jumps
     [SerializeField] private int extraJumps = 1;
     private int remainingJumps;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource walkSFX;
+    [SerializeField] private AudioSource jumpSFX;
+    private bool isWalking = false;
     
 
 
@@ -54,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         //Grabs the Character Controller to manipulate it in the script
         playerCharController = GetComponent<CharacterController>();
         playerInteractController = GetComponent<PlayerInteractController>();
+        shrinkPlayer = GetComponent<ShrinkPlayer>();
     }
 
     void Update()
@@ -87,10 +95,31 @@ public class PlayerMovement : MonoBehaviour
 
     void MovementUpdate()
     {  
+        playerCharController.stepOffset = shrinkPlayer.currentScale / 200;
         //Get input from WASD and/or the arrow keys
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
-
+        if (grounded == true)
+        {
+            if (verticalInput != 0f || horizontalInput != 0f)
+            {
+                if (isWalking == false)
+                {
+                    walkSFX.Play();
+                    isWalking = true;
+                }
+            } 
+            else
+            {
+                walkSFX.Stop();
+                isWalking = false;
+            }    
+        }
+        else
+        {
+            walkSFX.Stop();
+            isWalking = false;
+        } 
         
         
         //check if sprint key is being pressed
@@ -193,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
             } 
             else
             {
+                jumpSFX.Play();
                 verticalVelocity = Mathf.Sqrt(jumpHeight * jumpMultiplier * -2f * gravityValue * gravityStrenth);
                 isJumping = false;
             }

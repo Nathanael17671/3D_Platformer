@@ -12,3 +12,16 @@ public enum PotionType
     Dark,
     Mana
 }
+public enum AbstractPotion
+{
+    A,
+    B,
+    C,
+    D,
+    E,
+    F,
+    G,
+    H,
+    I,
+    J
+}

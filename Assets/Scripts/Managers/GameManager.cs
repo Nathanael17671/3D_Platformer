@@ -5,26 +5,34 @@ public class GameManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject pauseMenu;
-    public bool isPaused = false;
+    [SerializeField] private GameObject settingsMenu;
+    [HideInInspector] public bool isPaused = false;
+    private bool isMuted = false;
 
     [Header("Referances")]
+    [SerializeField] private GameObject[] activateOnStart;
     [SerializeField] private MonoBehaviour[] scriptsToDisable;
+    [SerializeField] private AudioSource[] audioSourcesToMute;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private ShrinkPlayer shrinkPlayer;
+    [SerializeField] private NumberPad numberPad;
+    [SerializeField] private SoundManager soundManager;
 
-    [Header("Victory")]
-    [HideInInspector] public bool victoryTriggered = false;
+    [Header("Victory")] 
     [SerializeField] private GameObject victoryScreen;
     [SerializeField] private AudioClip victorySound;
+    [HideInInspector] public bool victoryTriggered = false;
 
     [Header("Defeat")]
-    [HideInInspector] public bool defeatTriggered = false;
     [SerializeField] private GameObject defeatScreen;
     [SerializeField] private AudioClip defeatSound;
+    [HideInInspector] public bool defeatTriggered = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach (var gameObject in activateOnStart)
+            gameObject.SetActive(true);
         UnPause();
     }
 
@@ -33,13 +41,18 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isPaused == true)
+            if (numberPad.isActive == false)
             {
-                UnPause();
-            }
-            else
-            {
-                Pause();
+                if (isPaused == true)
+                {
+                    UnPause();
+                    soundManager.PlaySmallButtonUpSFX();
+                }
+                else
+                {
+                    Pause();
+                    soundManager.PlaySmallButtonDownSFX();
+                }
             }
         }
     }
@@ -107,8 +120,10 @@ public class GameManager : MonoBehaviour
     public void UnPause()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
         EnableControlls();
         isPaused = false;
+        UnMuteAll();
     } 
 
     public void Pause()
@@ -116,5 +131,31 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(true);
         DisableControlls();
         isPaused = true;
+        MuteAll();
+    }
+
+    public void MuteAll()
+    {
+        foreach (AudioSource source in audioSourcesToMute)
+        {
+            if (source != null)
+            {
+                source.mute = true;
+            }
+        }
+        isMuted = true;
+    }
+
+    // Optional: A function to unmute specifically
+    public void UnMuteAll()
+    {
+        foreach (AudioSource source in audioSourcesToMute)
+        {
+            if (source != null)
+            {
+                source.mute = false;
+            }
+        }
+        isMuted = false;
     }
 }

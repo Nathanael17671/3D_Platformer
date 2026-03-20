@@ -5,17 +5,22 @@ using System.Collections.Generic;
 public class CraftingTable : MonoBehaviour
 {
     [Header("References")]
-    public RecipeDatabase recipeDatabase;
-    public PotionDatabase potionDatabase;
+    [SerializeField] private  RecipeDatabase recipeDatabase;
+    [SerializeField] private  PotionDatabase potionDatabase;
 
-    public PlayerInteractController playerController;
-    public Camera playerCamera;
+    [SerializeField] private  PlayerInteractController playerController;
+    [SerializeField] private  Camera playerCamera;
     
-    public GameManager gameManager;
-    public GameObject numberPadCanvas;
+    [SerializeField] private  GameManager gameManager;
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private  GameObject numberPadCanvas;
 
-    public Transform interactTarget;
-    public Transform spawnPoint;
+    [SerializeField] private  Transform interactTarget;
+    [SerializeField] private  Transform spawnPoint;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource craftingSFX;
+    [SerializeField] private AudioSource finishCraftingSFX;
 
     [Header("Crafting Mode")]
     public CraftMode craftMode;
@@ -97,6 +102,7 @@ public class CraftingTable : MonoBehaviour
     {
         crafting = true;
         craftTimer = 0;
+        craftingSFX.Play();
 
         while (craftTimer < craftDuration)
         {
@@ -110,6 +116,7 @@ public class CraftingTable : MonoBehaviour
         FinishCraft();
 
         crafting = false;
+        craftingSFX.Stop();
     }
 
     void FinishCraft()
@@ -136,7 +143,7 @@ public class CraftingTable : MonoBehaviour
                 CraftRestricted();
                 break;
         }
-
+        finishCraftingSFX.Play();
         storedIngredients.Clear();
         UpdateSlotVisuals();
     }
@@ -241,8 +248,6 @@ public class CraftingTable : MonoBehaviour
 
     void HandleInsert()
     {
-        
-
         if (!IsLookingAtTarget())
             return;
         
@@ -272,7 +277,7 @@ public class CraftingTable : MonoBehaviour
 
 
         storedIngredients.Add(potion.potionType);
-
+        soundManager.PlayPotionInsertSFX();
         Destroy(playerController.HeldObject.gameObject);
 
         UpdateSlotVisuals();
@@ -308,6 +313,7 @@ public class CraftingTable : MonoBehaviour
             if (prefab != null)
                 Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         }
+        soundManager.PlayRecipeFailSFX();
     }
 
     void UpdateSlotVisuals()
@@ -332,6 +338,7 @@ public class CraftingTable : MonoBehaviour
             }
         }
     }
+    
 
     bool IsLookingAtTarget()
     {

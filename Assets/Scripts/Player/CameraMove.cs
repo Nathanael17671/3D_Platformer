@@ -21,7 +21,6 @@ public class CameraMove : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start: " + currentX);
         playerTransform.transform.localRotation = Quaternion.Euler(0, currentX, 0);
     }
     // LateUpdate is called once per frame after Update is run

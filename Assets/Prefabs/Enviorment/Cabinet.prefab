@@ -540,7 +540,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: f4f94aad32d1a70439ecf839cbc84234, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -657,7 +657,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fcc3e49701d0062489026bdd593172b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,7 +776,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8242941744660983409}
   serializedVersion: 4
-  m_Mass: 1000
+  m_Mass: 30
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -811,8 +811,8 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 0
   m_Spring:
-    spring: 10000
-    damper: 500
+    spring: 1000
+    damper: 50
     targetPosition: 0
   m_UseMotor: 0
   m_Motor:
@@ -852,6 +852,6 @@ MonoBehaviour:
     m_Bits: 599
   closedPosition: 0
   openPosition: -90
-  openStrength: 10000
-  doorDamper: 500
+  openStrength: 500
+  doorDamper: 100
   playerCamera: {fileID: 0}

@@ -25,12 +25,13 @@ public class GrabbableObject : MonoBehaviour
     [Header("Hover Text")]
     [SerializeField] private GameObject hoverTextRoot;
     [SerializeField] private TextMeshProUGUI hoverText;
-
     [SerializeField] private string objectName = "Object";
 
+    [Header("Other")]
+    [SerializeField] private AudioSource pickUpSFX;
 
     private Transform lookTarget;
-    public float objectPlayerStrength;
+    [HideInInspector] public float objectPlayerStrength;
     private Vector3 lastGrabPointPos;
     private Vector3 grabPointVelocity;
 
@@ -58,6 +59,7 @@ public class GrabbableObject : MonoBehaviour
         rb.angularDamping = 0.05f;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         lastGrabPointPos = grabPoint.position;
+        pickUpSFX.Play();
     }
 
 

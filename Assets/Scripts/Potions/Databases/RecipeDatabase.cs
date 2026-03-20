@@ -7,12 +7,7 @@ public class RecipeDatabase : MonoBehaviour
 
     private Dictionary<string, PotionType> recipeLookup = new Dictionary<string, PotionType>();
 
-    void Awake()
-    {
-        BuildDatabase();
-    }
-
-    void BuildDatabase()
+    public void BuildDatabase()
     {
         recipeLookup.Clear();
 
@@ -63,5 +58,25 @@ public class RecipeDatabase : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void AddRecipe(List<PotionType> ingredients, bool useNumber, int code, PotionType result)
+    {
+        // 1️⃣ Add to dictionary (used for crafting)
+        string key = RecipeKeyGenerator.Generate(ingredients, useNumber, code);
+        recipeLookup[key] = result;
+
+        // 2️⃣ Add to list (used for lookup/debugging)
+        PotionRecipe newRecipe = new PotionRecipe
+        {
+            ingredients = new List<PotionType>(ingredients),
+            useNumber = useNumber,
+            requiredCode = code,
+            result = result
+        };
+
+        recipes.Add(newRecipe);
+
+        Debug.Log("Added recipe: " + key + " → " + result);
     }
 }

@@ -12,7 +12,7 @@ public class ShrinkPlayer : MonoBehaviour
     private float currentPickupDistance;
     private float currentGrabPoint;
     private float currentGrabStrengh;
-    private float currentScale;
+    public float currentScale;
     private Vector3 setScale;
 
 

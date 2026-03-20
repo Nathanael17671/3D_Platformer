@@ -3,13 +3,12 @@ using UnityEngine;
 public class NumberInputDevice : MonoBehaviour
 {
     public int currentCode;
-    [SerializeField] private float interactDistance = 5f;
     [SerializeField] private LayerMask interactionLayers;
 
     [Header("References")]
     public NumberPad numberPad;
     public CraftingTable craftingTable;
-
+    [SerializeField] private PlayerInteractController playerInteractController;
     public Camera playerCamera;
 
     public void SetCode(int code)
@@ -23,7 +22,7 @@ public class NumberInputDevice : MonoBehaviour
         {
             Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactionLayers))
+            if (Physics.Raycast(ray, out RaycastHit hit, playerInteractController.pickupDistance, interactionLayers))
             {
                 if (hit.transform == transform)
                 {

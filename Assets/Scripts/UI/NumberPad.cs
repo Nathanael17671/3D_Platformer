@@ -10,7 +10,7 @@ public class NumberPad : MonoBehaviour
     private NumberInputDevice connectedDevice;
     private CraftingTable connectedTable;
 
-    private bool isActive = true;
+    public bool isActive = true;
     [SerializeField] private MonoBehaviour[] scriptsToDisable;
     private string currentInput = "";
 
@@ -54,6 +54,7 @@ public class NumberPad : MonoBehaviour
         UpdateDisplay();
 
         gameObject.SetActive(false);
+
     }
 
     public void AddDigit(int digit)

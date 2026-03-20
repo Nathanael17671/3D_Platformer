@@ -8,6 +8,7 @@ public class PlayerInteractController : MonoBehaviour
     [SerializeField] private LayerMask pickupLayerMask;
     [SerializeField] private LayerMask interactLayers;
     [SerializeField] private CameraMove cameraMove;
+    [SerializeField] private SoundManager soundManager;
 
     [Header("Strength")]
     public float playerStrength = 10f;
@@ -149,7 +150,6 @@ public class PlayerInteractController : MonoBehaviour
                     {
                         Physics.IgnoreCollision(playerCol, col, true);
                     }
-                    
                 }
                 else
                 {
