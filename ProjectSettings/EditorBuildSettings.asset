@@ -9,19 +9,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Stage.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Main Game/Scenes/Main Menu.unity
     guid: 5859c9a4f62073049b04ab60b3fe15d1
   - enabled: 1
-    path: Assets/Scenes/Level_0.unity
+    path: Assets/Main Game/Scenes/Level_0.unity
     guid: f35458a8a1e08b344a57c859c248b238
   - enabled: 1
-    path: Assets/Scenes/Level_1.unity
+    path: Assets/Main Game/Scenes/Level_1.unity
     guid: 671ae615820949b4782f7f2e77a83314
   - enabled: 1
-    path: Assets/Scenes/Level_2.unity
+    path: Assets/Main Game/Scenes/Level_2.unity
     guid: 742abda3168dc8a44926ae03a3d4c84a
   - enabled: 1
-    path: Assets/Scenes/Level_Tutorial.unity
+    path: Assets/Main Game/Scenes/Level_Tutorial.unity
     guid: 5c52d42315475a043931a987b56f83db
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
