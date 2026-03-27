@@ -11,11 +11,6 @@ public class ScatterObjects : MonoBehaviour
         ScatterObject();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) ScatterObject();
-    }
-
     void ScatterObject()
     {
         List<Transform> availableSpots = new List<Transform>(spawnPoints);

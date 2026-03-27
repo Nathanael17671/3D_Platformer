@@ -444,13 +444,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5404596654707691279}
     m_Modifications:
+    - target: {fileID: 1923599040958654393, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3649273788258278476, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f5f588dfd86bd564f841af12bd1c05fb, type: 2}
+    - target: {fileID: 3992932186329855814, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4935290627840216289, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
       propertyPath: m_Name
       value: Pink Small Potion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935290627840216289, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5707885925318219355, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
       propertyPath: m_LocalPosition.x
@@ -491,6 +503,18 @@ PrefabInstance:
     - target: {fileID: 5707885925318219355, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6651939358317751088, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705245177744290382, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531636764333358905, guid: 922affe9d2ad4c3478e63e206472a873, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

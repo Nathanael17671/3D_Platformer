@@ -163,7 +163,7 @@ public class RecipeRandomizer : MonoBehaviour
             // Number
             if (recipe.usesNumber)
             {
-                text += " + " + recipe.generatedCode;
+                text += " + [" + recipe.generatedCode + "]";
             }
 
             // Result

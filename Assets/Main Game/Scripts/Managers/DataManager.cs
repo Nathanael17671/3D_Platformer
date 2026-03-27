@@ -5,6 +5,8 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance; // Static reference to the singleton instance
     [SerializeField][Range(5.0f, 120.0f)]public float sensitivity = 50.0f;
     [SerializeField][Range(0.0f, 100.0f)]public float musicVolume = 50.0f;
+    [SerializeField][Range(1.0f, 10.0f)] public float shrinkPlayerSpeed = 5f;
+    [SerializeField] public bool showHeight = true;
 
     private void Awake()
     {

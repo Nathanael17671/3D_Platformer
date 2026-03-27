@@ -27,8 +27,8 @@ public class CameraMove : MonoBehaviour
     void LateUpdate()
     {
         //Get the input of the mouse and add it to the current position of the camera (-1 to invert the camera inputs)
-        currentX += Input.GetAxis("Mouse X") * DataManager.Instance.sensitivity * weightMultiplier * 5f * Time.deltaTime;
-        currentY += Input.GetAxis("Mouse Y") * DataManager.Instance.sensitivity * weightMultiplier * 7f * Time.deltaTime * -1;
+        currentX += Input.GetAxis("Mouse X") * DataManager.Instance.sensitivity * weightMultiplier * 10f * Time.deltaTime;
+        currentY += Input.GetAxis("Mouse Y") * DataManager.Instance.sensitivity * weightMultiplier * 14f * Time.deltaTime * -1;
 
         //Limit y camera movement
         currentY = Mathf.Clamp(currentY, YMin, YMax);

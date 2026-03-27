@@ -5,7 +5,8 @@ using TMPro;
 public class GrabbableObject : MonoBehaviour
 {
     private Rigidbody rb;
-    private Transform grabPoint;
+    [HideInInspector] public Transform grabPoint;
+    public bool wasGrabbed = false;
 
     [Header("Weight")]
     public float weight = 10f;
@@ -38,8 +39,6 @@ public class GrabbableObject : MonoBehaviour
     public bool IsHeld => grabPoint != null;
 
 
-
-
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,10 +46,10 @@ public class GrabbableObject : MonoBehaviour
     }
 
 
-
     // ================= GRAB =================
     public void Grab(Transform grabTransform, float strength)
     {
+        wasGrabbed = true;
         grabPoint = grabTransform;
         objectPlayerStrength = strength;
 

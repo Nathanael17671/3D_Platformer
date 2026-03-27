@@ -95,7 +95,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState=CursorLockMode.None;
         Cursor.visible=true;
-        shrinkPlayer.active = false;
+        if (shrinkPlayer != null)
+            shrinkPlayer.active = false;
     }
 
     public void EnableControlls()
@@ -105,7 +106,8 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState=CursorLockMode.Locked;
         Cursor.visible=false;
-        shrinkPlayer.active = true;
+        if (shrinkPlayer != null)
+            shrinkPlayer.active = true;
 
         defeatScreen.SetActive(false);
         victoryScreen.SetActive(false);

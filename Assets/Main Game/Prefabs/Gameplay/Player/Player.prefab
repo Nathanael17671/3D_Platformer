@@ -67,14 +67,14 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 100
-  field of view: 80
+  far clip plane: 500
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 3799
+    m_Bits: 7895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   cameraMove: {fileID: 7789434184432785298}
   walkSpeed: 10
   sprintSpeed: 15
-  minCarrySpeedMultiplier: 0.01
+  minCarrySpeedMultiplier: 0.1
   jumpHeight: 3
   minJumpMultiplier: 0.01
   gravityStrenth: 7
@@ -293,11 +293,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d65c0426796c0ce4d92ac8808612c503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shrinkSpeed: 5
+  shrinkSpeed: 10
   startScale: 200
-  minScale: 20
+  minScale: 10
   active: 1
+  gameManager: {fileID: 0}
+  dataManager: {fileID: 0}
   objectGrabPoint: {fileID: 6613139366946299190}
+  currentScale: 0
+  maximumSizeText: {fileID: 0}
+  minimumSizeText: {fileID: 0}
+  currentSizeText: {fileID: 0}
+  progressBar: 0
+  currentSizeTextPosition: 0
 --- !u!114 &4307015658975267001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +329,7 @@ MonoBehaviour:
   cameraMove: {fileID: 7789434184432785298}
   soundManager: {fileID: 0}
   playerStrength: 100
-  pickupDistance: 6
+  pickupDistance: 5
   normalCursor: {fileID: 0}
   grabCursor: {fileID: 0}
   heavyCursor: {fileID: 0}
@@ -568,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8d1fa0a3181c440b38c783cebd5ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentX: -165.204
+  currentX: 180
   playerTransform: {fileID: 7609477417967970342}
 --- !u!1 &2506771597009022919
 GameObject:
@@ -636,7 +644,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 100
-  field of view: 80
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1190,7 +1198,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 119
+  m_VersionIndex: 146
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1321,7 +1329,7 @@ Transform:
   m_GameObject: {fileID: 6613139366946299190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 4}
+  m_LocalPosition: {x: 0, y: -0.2, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1355,9 +1363,9 @@ Transform:
   m_GameObject: {fileID: 8498537829748191193}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 2.5, z: 1.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalScale: {x: 1.5, y: 2.25, z: 1.5}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7609477417967970342}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

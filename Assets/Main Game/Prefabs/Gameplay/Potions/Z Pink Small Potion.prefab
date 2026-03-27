@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3169783622121683073}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2835213355497250860}
   - component: {fileID: 8597681005162596454}
   - component: {fileID: 4535482136270244107}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 2712552244249835036}
   - component: {fileID: 1949380589579898650}
   - component: {fileID: 7460973144546343600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 8484166718970006615}
   - component: {fileID: 7275611973734442158}
   - component: {fileID: 5307112693828230967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,6 +453,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b16df05b5edce4d4d998add3d47b227e, type: 3}
       propertyPath: m_Name
       value: Z Pink Small Potion
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b16df05b5edce4d4d998add3d47b227e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507767883509144192, guid: b16df05b5edce4d4d998add3d47b227e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

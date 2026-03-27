@@ -206,7 +206,6 @@ public class PlayerInteractController : MonoBehaviour
 
         float ratio = heldObject.WeightRatio(playerStrength);
         float multiplier = Mathf.Lerp(1f, 0.05f, ratio);
-        Debug.Log(multiplier);
         cameraMove.SetWeightMultiplier(multiplier);
     }
 }

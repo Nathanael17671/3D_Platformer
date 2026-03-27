@@ -95,7 +95,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MovementUpdate()
     {  
-        playerCharController.stepOffset = shrinkPlayer.currentScale / 200;
+        if (shrinkPlayer != null)
+            playerCharController.stepOffset = shrinkPlayer.currentScale / 200;
         //Get input from WASD and/or the arrow keys
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
@@ -142,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
             float weightRatio = playerInteractController.HeldObject.WeightRatio(playerInteractController.playerStrength);
             // heavier object → slower movement
             speedMultiplier = Mathf.Lerp(1f, minCarrySpeedMultiplier, weightRatio);
-            Debug.Log(weightRatio + " and " + speedMultiplier);
         }
 
         currentForwardSpeed *= speedMultiplier;

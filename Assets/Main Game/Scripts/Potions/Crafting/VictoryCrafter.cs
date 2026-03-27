@@ -6,11 +6,13 @@ public class VictoryCrafter : MonoBehaviour
     [Header("Referances")]
     [SerializeField] private CraftingTable craftingTable;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject endDialouge;
+    [SerializeField] private ShrinkPlayer shrinkPlayer;
 
     [Header("Allowed Ingredients")]
     [SerializeField] private List<PotionType> requiredIngredients = new List<PotionType>();
 
-    
+    private bool end = false;
 
     void Update()
     {
@@ -28,8 +30,13 @@ public class VictoryCrafter : MonoBehaviour
             if (!ingredients.Contains(type))
                 return;
         }
-
-        gameManager.TriggerVictory();
+        if (end == false)
+        {
+            end = true;
+            shrinkPlayer.active = false;
+            endDialouge.SetActive(true);
+        }
+        
     }
 
     
